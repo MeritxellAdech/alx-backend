@@ -4,6 +4,47 @@ This directory contains the implementation of some of the algorithms used in cac
 ## Introduction
 Caching, pronounced as `cashing`, is the process of storing data in a temporary storage area that facilitates faster access to data with the goal of improving application and system performance. However, when that storage gets full... problem come up. For that reason, this directory is created. In here, I practice how to free space from the cache.
 
+## Required
+The following script is the base class all other classes inherit from throughout the project.
+
+`base_caching.py`
+```python
+#!/usr/bin/python3
+""" BaseCaching module
+"""
+
+class BaseCaching():
+    """ BaseCaching defines:
+      - constants of your caching system
+      - where your data are stored (in a dictionary)
+    """
+    MAX_ITEMS = 4
+
+    def __init__(self):
+        """ Initiliaze
+        """
+        self.cache_data = {}
+
+    def print_cache(self):
+        """ Print the cache
+        """
+        print("Current cache:")
+        for key in sorted(self.cache_data.keys()):
+            print("{}: {}".format(key, self.cache_data.get(key)))
+
+    def put(self, key, item):
+        """ Add an item in the cache
+        """
+        raise NotImplementedError("put must be implemented in your cache class")
+
+    def get(self, key):
+        """ Get an item by key
+        """
+        raise NotImplementedError("get must be implemented in your cache class")
+```
+>[!Note]
+> Create the `base_caching.py` file
+
 ## Run
 The scripts need entry point to be executed. For the reason the usage section is made. Each script has its corresponding `main.py`.
 
